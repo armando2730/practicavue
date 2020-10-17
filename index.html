@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head> 
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">    
+   <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>    
+   <title>Encuesta</title>    
+</head>
+<body>
+
+	<section>
+	
+	<form id="app1" class="container">
+		<h1>{{titulo}}</h1>
+		<br> 
+		<h2>{{pregunta1}}</h2><br>
+		Si<input v-model="vue.e" v-bind:value="true" type="radio" class="form-radio-input" name="programar" >
+		No<input v-model="vue.e" v-bind:value="false" type="radio" class="form-radio-input" name="programar" >
+
+	<div v-if="vue.e"class="form-group">
+		<label>{{pregunta2}}</label>
+		<input type="number" v-model="vue.a" class="form-control" name="">
+	</div>
+	<div v-if="vue.a >=2" class="form-group">
+		<label>{{pregunta3}}</label>
+		<textarea v-model="vue.m" class="form-control" rows="4"></textarea>
+	</div>
+	<div v-if="vue.e" class="form-group">
+		<label>{{pregunta4}}</label>
+		<textarea v-model="vue.d" class="form-control" rows="4"></textarea>
+	</div>
+
+	<div v-if="vue.a >=2" class="form-group">
+		<label>{{pregunta5}}</label>
+		<input type="text" v-model="nuevaL" @keyup.enter="agregarLen">
+	<button type="button" class="btn btn-info" @click="agregarLen">Agregar Lenguaje</button>
+	<ul>
+		<li v-for="lenguaje of lenguajes" class=list-group-item>
+			{{lenguaje.nombre}}
+		</li>
+	</ul>
+	</div>
+	
+	<br>
+	<div v-if="vue.a >=2" class="form-group">
+	<label>{{pregunta1+ vue.e}}</label><br>
+	<label>{{pregunta2+ vue.a}}</label><br>
+	<label>{{pregunta3+ vue.m}}</label><br>
+	<label>{{pregunta4+ vue.d}}</label><br>
+	<label>{{pregunta5+ nuevaL}}</label>
+	</div>
+	<h2 v-if="vue.e==false">{{mensaje}}</h2>
+	</form>
+	
+</section>
+</body>
+<script type="text/javascript" src="vue1.js"></script>
+</html>
